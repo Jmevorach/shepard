@@ -771,13 +771,15 @@ Resources:
           - Sid: Allow-S3-Send-Message-From-Input-Bucket
             Effect: Allow
             Principal:
-              AWS: "AWS::AccountId"
+              Service: "s3.amazonaws.com"
             Action:
               - sqs:SendMessage
             Resource: !GetAtt SQSShepardReceiveQueue.Arn
             Condition:
               ArnEquals:
                 aws:SourceArn: !Sub "arn:aws:s3:::${InputsBucket}"
+              StringEquals:
+                aws:SourceAccount: 'AWS::AccountId'
       Queues:
         - !Ref SQSShepardReceiveQueue
 
