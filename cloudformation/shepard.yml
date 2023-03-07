@@ -777,7 +777,7 @@ Resources:
             Resource: !GetAtt SQSShepardReceiveQueue.Arn
             Condition:
               ArnEquals:
-                aws:SourceArn: !Sub "arn:aws:s3:::${InputsBucket}"
+                aws:SourceArn: !Sub "arn:aws:s3:*:*:${InputsBucket}"
               StringEquals:
                 aws:SourceAccount: 'AWS::AccountId'
       Queues:
