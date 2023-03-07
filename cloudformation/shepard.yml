@@ -786,7 +786,7 @@ Resources:
         Version: '2012-10-17'
         Id: MyOtherQueuePolicy
         Statement:
-         - Sid: Allow-S3-Send-Message-From-Source-Account
+          - Sid: Allow-S3-Send-Message-From-Source-Account
             Effect: Allow
             Principal: "*"
             Action:
