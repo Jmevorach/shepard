@@ -760,7 +760,6 @@ Resources:
       VisibilityTimeout: 43200 #Set visability to 12 hours for maximum queueing possible.
 
   #this policy allows SQS to receive messages from S3
-  #this policy allows SQS to receive messages from S3
   SQSShepardQueuePolicy:
     Type: AWS::SQS::QueuePolicy
     Properties:
@@ -768,18 +767,18 @@ Resources:
         Version: '2012-10-17'
         Id: MyQueuePolicy
         Statement:
-          - Sid: Allow-S3-Send-Message-From-Input-Bucket
+          - Sid: Allow access to specific S3 bucket
             Effect: Allow
             Principal:
-              Service: "s3.amazonaws.com"
+              Service: s3.amazonaws.com
             Action:
-              - sqs:SendMessage
-            Resource: !GetAtt SQSShepardReceiveQueue.Arn
+              - SQS:SendMessage
+            Resource: SQS-queue-ARN
             Condition:
               ArnLike:
                 aws:SourceArn: !Sub "arn:aws:s3:*:*:${InputsBucket}"
               StringEquals:
-                aws:SourceAccount: 'AWS::AccountId'
+                aws:SourceAccount: !Ref "AWS::AccountId"
       Queues:
         - !Ref SQSShepardReceiveQueue
 
