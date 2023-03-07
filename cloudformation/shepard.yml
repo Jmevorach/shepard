@@ -776,7 +776,7 @@ Resources:
               - sqs:SendMessage
             Resource: !GetAtt SQSShepardReceiveQueue.Arn
             Condition:
-              ArnEquals:
+              ArnLike:
                 aws:SourceArn: !Sub "arn:aws:s3:*:*:${InputsBucket}"
               StringEquals:
                 aws:SourceAccount: 'AWS::AccountId'
