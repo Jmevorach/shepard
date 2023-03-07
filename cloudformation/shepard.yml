@@ -576,28 +576,10 @@ Resources:
         QueueConfigurations:
           - Event: s3:ObjectCreated:*
             Queue: !GetAtt SQSShepardReceiveQueue.Arn
-      VersioningConfiguration:
-        Status: Enabled
       BucketName:
         Fn::Sub:
           "${InputsBucket}"
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
       AccessControl: BucketOwnerFullControl
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-      LifecycleConfiguration:
-        Rules:
-          - Id: InfrequentAccessRule
-            Status: Enabled
-            Transitions:
-              - TransitionInDays: 30
-                StorageClass: STANDARD_IA
       Tags:
         - Key: Team
           Value: !Ref TeamName
@@ -630,28 +612,10 @@ Resources:
   ShepardOutputsBucket:
     Type: AWS::S3::Bucket
     Properties:
-      VersioningConfiguration:
-        Status: Enabled
       BucketName:
         Fn::Sub:
           "${OutputsBucket}"
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
       AccessControl: BucketOwnerFullControl
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-      LifecycleConfiguration:
-        Rules:
-          - Id: InfrequentAccessRule
-            Status: Enabled
-            Transitions:
-              - TransitionInDays: 30
-                StorageClass: STANDARD_IA
       Tags:
         - Key: Team
           Value: !Ref TeamName
@@ -685,28 +649,10 @@ Resources:
   ShepardQuickDeployBucket:
     Type: AWS::S3::Bucket
     Properties:
-      VersioningConfiguration:
-        Status: Enabled
       BucketName:
         Fn::Sub:
           "${QuickDeployBucket}"
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
       AccessControl: BucketOwnerFullControl
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-      LifecycleConfiguration:
-        Rules:
-          - Id: InfrequentAccessRule
-            Status: Enabled
-            Transitions:
-              - TransitionInDays: 30
-                StorageClass: STANDARD_IA
       Tags:
         - Key: Team
           Value: !Ref TeamName
@@ -1494,28 +1440,10 @@ Resources:
     Type: AWS::S3::Bucket
     Condition: WantsNewBucketForLustre
     Properties:
-      VersioningConfiguration:
-        Status: Enabled
       BucketName:
         Fn::Sub:
           "${LustreBucketName}"
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
       AccessControl: BucketOwnerFullControl
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-      LifecycleConfiguration:
-        Rules:
-          - Id: InfrequentAccessRule
-            Status: Enabled
-            Transitions:
-              - TransitionInDays: 30
-                StorageClass: STANDARD_IA
       Tags:
         - Key: Team
           Value: !Ref TeamName
